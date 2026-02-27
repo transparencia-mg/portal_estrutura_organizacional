@@ -1312,48 +1312,50 @@
                         </div>
                     </div>
 
-                    <div class="table-container">
-                        <div class="table-header">
-                            <h3 class="table-title">Informações sobre os Dados</h3>
-                        </div>
-                        <div class="p-4">
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="card-stats text-center p-4 bg-white rounded shadow-sm">
-                                        <i class="material-icons fa-3x mb-3" style="color: var(--primary-dark); font-size: 48px;">storage</i>
-                                        <h4>Fonte dos Dados</h4>
-                                        <p class="text-muted" style="font-size: 13px;">Dados atualizados automaticamente do GitHub Oficial</p>
-                                        <div class="mt-3">
-                                            <a href="https://github.com/transparencia-mg/estrutura_organizacional" 
-                                               target="_blank" 
-                                               class="btn-export w-100 d-block text-decoration-none">
-                                                <i class="material-icons me-2">code</i>Acessar Repositório
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="card-stats text-center p-4 bg-white rounded shadow-sm">
-                                        <i class="material-icons fa-3x mb-3" style="color: var(--primary-dark); font-size: 48px;">public</i>
-                                        <h4>Portal de Dados Abertos</h4>
-                                        <p class="text-muted" style="font-size: 13px;">Acesse o portal oficial de dados abertos de Minas Gerais</p>
-                                        <div class="mt-3">
-                                            <a href="https://dados.mg.gov.br/dataset/estrutura_organizacional" 
-                                               target="_blank" 
-                                               class="btn-export w-100 d-block text-decoration-none">
-                                                <i class="material-icons me-2">open_in_new</i>Acessar Portal
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<div class="table-container">
+    <div class="table-header">
+        <h3 class="table-title">Informações sobre os Dados</h3>
+    </div>
+    <div class="p-4">
+        <div class="row">
+            <!-- Card 1 - Repositório GitHub -->
+            <div class="col-md-6 col-12 mb-3 mb-md-0">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3">Fonte dos Dados</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Acesse o repositório Estrutura Organizacional que reúne e organiza dados institucionais relacionados à composição administrativa do Estado de Minas Gerais.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://github.com/transparencia-mg/estrutura_organizacional" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2"
+                           style="color: var(--primary-dark); background-color: white; border: 1px solid var(--primary-dark); border-radius: 4px; transition: all 0.3s ease;">
+                            Acessar Repositório
+                        </a>
                     </div>
-                    
+                </div>
+            </div>
+            
+            <!-- Card 2 - Portal de Dados Abertos -->
+            <div class="col-md-6 col-12">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3">Portal de Dados Abertos</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Acesse o conjunto de dados de Estrutura Organizacional, documentado conforme especificações Frictionless Data (dados sem fricção), que atendem à caracterização descrita nos normativos citados acima e possibilitam a validação automática dos dados.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://dados.mg.gov.br/dataset/estrutura_organizacional" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2"
+                           style="color: var(--primary-dark); background-color: white; border: 1px solid var(--primary-dark); border-radius: 4px; transition: all 0.3s ease;">
+                            Acessar Portal de Dados MG
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- ==================== MODAL DE DETALHES CRIATIVO ==================== -->
     <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">

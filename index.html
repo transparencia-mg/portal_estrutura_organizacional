@@ -573,7 +573,18 @@
             background: var(--primary-darker);
             color: white;
             transform: translateY(-1px);
+			border-color: var(--primary-dark) !important;
         }
+
+		/* Garantir que o texto fique justificado */
+    	.text-justify {
+        	text-align: justify;
+    	}
+    
+    	/* Altura igual para os cards */
+    	.h-100 {
+        	height: 100%;
+    	}
 
         /* ==================== BOTÃO COMPARTILHAR ==================== */
         .btn-share {
@@ -1341,7 +1352,7 @@
                 <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
                     <h4 class="fw-bold text-start mb-3">Portal de Dados Abertos</h4>
                     <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
-                        Acesse o conjunto de dados de Estrutura Organizacional, documentado conforme especificações Frictionless Data (dados sem fricção), que atendem à caracterização descrita nos normativos citados acima e possibilitam a validação automática dos dados.
+                        Acesse o conjunto de dados de Estrutura Organizacional, documentado conforme especificações Frictionless Data (dados sem fricção) e possibilitam a validação automática dos dados.
                     </p>
                     <div class="mt-4 text-end">
                         <a href="https://dados.mg.gov.br/dataset/estrutura_organizacional" 

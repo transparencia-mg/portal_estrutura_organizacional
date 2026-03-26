@@ -1,11 +1,11 @@
 {
   "version": "4.16.6",
-  "time": 0.028,
+  "time": 0.032,
   "errors": [],
   "tasks": [
     {
       "resource": {
-        "description": "Conjuntos referentes a estrutura governamental do Estado de Minas Gerais.",
+        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -46,6 +46,14 @@
               "type": "string"
             },
             {
+              "name": "e_mail",
+              "type": "string"
+            },
+            {
+              "name": "horario_atendimento",
+              "type": "string"
+            },
+            {
               "name": "competencias",
               "type": "string"
             },
@@ -56,15 +64,15 @@
           ]
         },
         "scheme": "file",
-        "title": "estrutura_organizacional",
+        "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "59cbabccb43baa4e9391f268bbdbfd56",
-          "bytes": 17113,
-          "fields": 9,
-          "rows": 62
+          "hash": "763b9b0a139c33fee07ee9dba8e771b1",
+          "bytes": 21244,
+          "fields": 11,
+          "rows": 66
         }
       },
-      "time": 0.017,
+      "time": 0.019,
       "scope": [
         "hash-count-error",
         "byte-count-error",

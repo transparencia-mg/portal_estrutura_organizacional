@@ -46,7 +46,7 @@
               "type": "string"
             },
             {
-              "name": "e_mail",
+              "name": "email",
               "type": "string"
             },
             {
@@ -66,8 +66,8 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "763b9b0a139c33fee07ee9dba8e771b1",
-          "bytes": 21244,
+          "hash": "15c65d5ea7a956c0672017a81f1ead96",
+          "bytes": 21243,
           "fields": 11,
           "rows": 66
         }

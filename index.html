@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Bibliotecas para PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -32,6 +33,11 @@
     --success-green: #28a745;
     --warning-yellow: #ffc107;
     --info-blue: #17a2b8;
+    --border-color: #dee2e6;
+    --facebook: #1877f2;
+    --twitter: #1da1f2;
+    --linkedin: #0a66c2;
+    --whatsapp: #25d366;
     --color-autonomo: #E83F6F;
     --color-secretaria: #95A5A6;
     --color-vinculado: #8E44AD;
@@ -175,10 +181,12 @@ html, body {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--primary-dark);
     font-weight: 600;
 }
+
+.data-atualizacao-box i { font-size: 14px; color: var(--accent-red); }
 
 /* ==================== MENU DE NAVEGAÇÃO ==================== */
 .nav-tabs-container {
@@ -199,12 +207,13 @@ html, body {
     border-radius: 10px !important;
     padding: 8px 18px !important;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 13px;
     color: #1a3a5c !important;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     transition: all .25s ease;
+    white-space: nowrap;
 }
 
 .nav-tabs .nav-link.active {
@@ -223,19 +232,20 @@ html, body {
 }
         
 .filter-label {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
     color: #1a3a5c;
     margin-bottom: 6px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
 }
         
 .form-control, .form-select {
     border: 2px solid #e9ecef;
     border-radius: 6px;
     padding: 10px 12px;
-    font-size: 10px;
+    font-size: 13px;
     height: 42px;
 }
 
@@ -285,26 +295,102 @@ html, body {
     top: 0;
     z-index: 10;
     font-weight: 600;
-    padding: 12px 10px;
-    font-size: 12px;
+    padding: 11px 10px;
+    font-size: 12.5px;
+    text-transform: uppercase;
     white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.3;
 }
         
 .table {
     width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     border-collapse: collapse;
+    table-layout: auto;
 }
         
 .table th, .table td {
     border: 1px solid #d6dee6;
-    padding: 12px 10px;
+    padding: 11px 10px;
     vertical-align: middle;
 }
+
+.table tbody td { font-size: 14px; }
         
 .table tbody tr:hover {
     background-color: rgba(41, 67, 90, 0.04);
 }
+
+/* ==================== TOAST COMPARTILHAR LINK ==================== */
+.toast-copia-link {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all .25s ease;
+}
+.toast-copia-link.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ==================== ÁRVORE DE HIERARQUIA ==================== */
+.hierarquia-tree {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    padding: 10px 5px;
+}
+
+.h-node { border-bottom: 1px solid #eef1f4; }
+.h-node:last-child { border-bottom: none; }
+
+.h-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s ease;
+}
+.h-row:hover { background: rgba(41,67,90,0.04); }
+.h-row .h-toggle {
+    font-size: 18px;
+    color: #94a3b8;
+    transition: transform .2s ease;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+}
+.h-node.open > .h-row .h-toggle { transform: rotate(90deg); color: #20445d; }
+.h-row .h-icon { font-size: 16px; color: #20445d; flex-shrink: 0; }
+.h-row .h-label { font-size: 13px; font-weight: 600; color: #1a3a5c; }
+.h-row .h-label small { font-weight: 500; color: #6c757d; }
+.h-row .h-link { margin-left: auto; font-size: 11px; color: #b93c42; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.h-row .h-link:hover { text-decoration: underline; }
+.h-row .h-count { margin-left: auto; font-size: 10px; color: white; background: #94a3b8; padding: 2px 8px; border-radius: 10px; font-weight: 600; flex-shrink: 0; }
+
+.h-children { display: none; padding-left: 20px; border-left: 2px solid #eef1f4; margin-left: 25px; }
+.h-node.open > .h-children { display: block; }
+
+.h-node[data-level="0"] > .h-row .h-label { font-size: 14px; font-weight: 700; }
+.h-node[data-level="0"] > .h-row { background: #f5f7fa; }
+.h-node[data-level="1"] > .h-row .h-icon { color: #20445d; }
+.h-node[data-level="2"] > .h-row .h-icon { color: #6c757d; font-size: 15px; }
+.h-node[data-level="2"] > .h-row .h-label { font-size: 12.5px; font-weight: 500; }
+.h-leaf > .h-row .h-toggle { visibility: hidden; }
 
 /* ==================== TAGS PADRONIZADAS ==================== */
 .badge-tipo {
@@ -337,17 +423,18 @@ html, body {
 .btn-primary-custom, .btn-pesquisa {
     background: #20445d;
     border: none;
-    padding: 10px 20px;
+    padding: 0 16px;
     font-weight: 600;
     border-radius: 6px;
-    font-size: 15px;
+    font-size: 13px;
     color: white;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    height: 42px;
+    height: 36px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
         
 .btn-primary-custom:hover, .btn-pesquisa:hover {
@@ -360,16 +447,18 @@ html, body {
     background: white;
     border: 2px solid var(--primary-darker);
     color: var(--primary-darker);
-    padding: 10px 20px;
+    padding: 0 16px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13px;
     border-radius: 6px;
     display: inline-flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
-    height: 42px;
+    height: 36px;
     transition: all 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none !important;
 }
         
 .btn-secondary-custom:hover {
@@ -602,13 +691,11 @@ html, body {
 
 @media (max-width: 768px) {
     .container { padding: 0 20px; }
-    .nav-tabs .nav-link { padding: 6px 12px; font-size: 12px; }
+    .nav-tabs .nav-link { padding: 8px 14px; font-size: 12px; width: 100%; justify-content: flex-start; }
     .actions-container { flex-direction: column; align-items: flex-start; }
 }
     </style>
 </head>
-<body>
-
 <body>
 
     <div class="main-container">
@@ -618,6 +705,7 @@ html, body {
                 <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
                     <li class="nav-item"><button class="nav-link active" id="visao-geral-tab" data-bs-toggle="tab" data-bs-target="#visao-geral" type="button"><i class="material-icons">bar_chart</i>Visão Geral</button></li>
                     <li class="nav-item"><button class="nav-link" id="destino-tab" data-bs-toggle="tab" data-bs-target="#destino" type="button"><i class="material-icons">apartment</i>Órgãos e Entidades</button></li>
+                    <li class="nav-item"><button class="nav-link" id="hierarquia-tab" data-bs-toggle="tab" data-bs-target="#hierarquia" type="button"><i class="material-icons">account_tree</i>Hierarquia</button></li>
                     <li class="nav-item"><button class="nav-link" id="downloads-tab" data-bs-toggle="tab" data-bs-target="#downloads" type="button"><span class="material-symbols-outlined">download</span>Downloads</button></li>
                 </ul>
             </div>
@@ -696,13 +784,14 @@ html, body {
                             <div class="col-md-3"><label class="filter-label">Vinculação</label><select class="form-select" id="vinculacaoOrgao"><option value="all">Todas</option></select></div>
                             <div class="col-md-6"><label class="filter-label">Buscar</label><input type="text" class="form-control" id="buscaOrgao" placeholder="Nome ou sigla..."></div>
                         </div>
-                        <div class="mt-3"><button class="btn-pesquisa" id="pesquisarOrgaos">Pesquisar</button><button class="btn-secondary-custom ms-2" id="limparFiltrosDashboard2">Limpar</button></div>
+                        <div class="mt-3"><button class="btn-pesquisa" id="pesquisarOrgaos">Atualizar Filtros</button><button class="btn-secondary-custom ms-2" id="limparFiltrosDashboard2">Limpar Filtros</button></div>
                     </div>
 
                     <div class="actions-container">
                         <div class="export-buttons">
                             <button class="btn-export" id="exportCSVDashboard2"><i class="material-icons">description</i> CSV</button>
                             <button class="btn-export" id="printDashboard2"><i class="material-icons">print</i> PDF</button>
+                            <button class="btn-export" id="compartilharLinkOrgaos"><i class="material-icons">share</i> Compartilhar Link</button>
                         </div>
                         <div class="d-flex align-items-center gap-3">
                             <div class="table-search-container"><i class="material-icons">search</i><input type="text" id="searchOrgaos" class="table-search-input" placeholder="Buscar na tabela..."></div>
@@ -734,6 +823,25 @@ html, body {
                             <div class="pagination-info" id="paginationInfoDashboard2"></div>
                             <ul class="pagination mb-0" id="paginationDashboard2"></ul>
                         </div>
+                    </div>
+                </div>
+
+                <!-- HIERARQUIA -->
+                <div class="tab-pane fade" id="hierarquia">
+                    <div class="filter-container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                        <div>
+                            <label class="filter-label" style="margin-bottom:2px;"><i class="material-icons" style="font-size:16px;vertical-align:middle;">account_tree</i> Hierarquia da Estrutura Orgânica</label>
+                            <p class="text-muted mb-0" style="font-size:12px;">Organograma completo conforme a Lei Estadual nº 24.313/2023. Clique para expandir/recolher cada nível.</p>
+                        </div>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button class="btn-secondary-custom" id="expandirTudo"><i class="material-icons" style="font-size:16px;">unfold_more</i> Expandir tudo</button>
+                            <button class="btn-secondary-custom" id="recolherTudo"><i class="material-icons" style="font-size:16px;">unfold_less</i> Recolher tudo</button>
+                            <a class="btn-primary-custom" id="verPdfEstrutura" href="#" target="_blank" rel="noopener"><i class="material-icons" style="font-size:16px;">picture_as_pdf</i> Ver PDF Completo</a>
+                        </div>
+                    </div>
+
+                    <div class="table-container" style="padding: 4px 0 20px;">
+                        <div id="hierarquiaTree" class="hierarquia-tree"></div>
                     </div>
                 </div>
 
@@ -788,14 +896,16 @@ html, body {
     </div>
     <div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
 
-    <script>
-        // ... seu JavaScript existente (mantenha igual) ...
-    </script>
-</body>
+    <div id="toastCopiaLink" class="toast-copia-link">
+        <i class="material-icons" style="font-size:16px;color:#28a745;">check_circle</i>
+        <span>Link copiado para a área de transferência!</span>
+    </div>
 
     <script>
         let orgaosData = [], filteredData = [], currentPageDashboard1 = 1, currentPageDashboard2 = 1, itemsPerPageDashboard1 = 50, itemsPerPageDashboard2 = 50, charts = {}, currentSortDashboard1 = { column: 'orgao', order: 'asc' }, currentSortDashboard2 = { column: 'orgao', order: 'asc' };
         const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/dataset/data/estrutura_governamental.csv';
+        // ATENÇÃO: ajuste este link quando o PDF "estrutura-organica.pdf" for inserido no repositório do GitHub
+        const GITHUB_PDF_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/dataset/docs/estrutura-organica.pdf';
         const tipoClasses = { 'Órgão Autônomo':'badge-autonomo','Secretaria':'badge-secretaria','Vinculado':'badge-vinculado','Autarquia':'badge-autarquia','Empresa Pública':'badge-empresa','Fundação Pública':'badge-fundacao','Outros':'badge-outros' };
 
 async function loadData() {
@@ -833,10 +943,15 @@ async function loadData() {
                     if(o.vinculacao==='-'||!o.vinculacao) o.vinculacao='Sem Vinculação'; 
                 });
                 filteredData = [...orgaosData];
+
+                document.getElementById('data-atualizacao-header').textContent =
+                    new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
                 resolve();
             }, 
             error: (err) => {
                 console.error('Erro ao carregar CSV:', err);
+                document.getElementById('data-atualizacao-header').textContent = 'indisponível';
                 resolve();
             }
         });
@@ -983,6 +1098,44 @@ function updateSummaryCards() {
             else { let headers=['orgao','sigla','tipo','vinculacao','responsavel_legal','endereco','telefone','email','horario_atendimento','competencias','site_orgao']; let data=filteredData.map(o=>headers.map(h=>o[h]||'')); let csv=[headers.join(';'),...data.map(r=>r.map(c=>`"${(c||'').replace(/"/g,'""')}"`).join(';'))].join('\n'); downloadCSV(csv,'orgaos.csv'); }
         }
         
+        function mostrarToastCopiaLink(mensagem) {
+            const toast = document.getElementById('toastCopiaLink');
+            if (!toast) return;
+            if (mensagem) toast.querySelector('span').textContent = mensagem;
+            toast.classList.add('show');
+            clearTimeout(window._toastCopiaTimer);
+            window._toastCopiaTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function compartilharLinkOrgaos() {
+            const link = window.location.href.split('#')[0] + '#destino';
+            const copiar = () => navigator.clipboard.writeText(link)
+                .then(() => mostrarToastCopiaLink('Link copiado para a área de transferência!'))
+                .catch(() => copiarLinkFallback(link));
+
+            if (navigator.clipboard && window.isSecureContext) {
+                copiar();
+            } else {
+                copiarLinkFallback(link);
+            }
+        }
+
+        function copiarLinkFallback(link) {
+            const input = document.createElement('textarea');
+            input.value = link;
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            input.select();
+            try {
+                document.execCommand('copy');
+                mostrarToastCopiaLink('Link copiado para a área de transferência!');
+            } catch (e) {
+                mostrarToastCopiaLink('Não foi possível copiar o link automaticamente.');
+            }
+            document.body.removeChild(input);
+        }
+
         function downloadCSV(content,name){ let blob=new Blob(['\uFEFF'+content],{type:'text/csv'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); }
         
         function exportToPDF(source){
@@ -1008,6 +1161,7 @@ function updateSummaryCards() {
             document.getElementById('printDashboard1')?.addEventListener('click',()=>exportToPDF('dashboard1'));
             document.getElementById('exportCSVDashboard2')?.addEventListener('click',()=>exportToCSV('dashboard2'));
             document.getElementById('printDashboard2')?.addEventListener('click',()=>exportToPDF('dashboard2'));
+            document.getElementById('compartilharLinkOrgaos')?.addEventListener('click', compartilharLinkOrgaos);
             document.getElementById('downloadCompleto')?.addEventListener('click',downloadFullCSV);
             document.getElementById('searchOrgaos')?.addEventListener('input',e=>filterOrgaosTable(e.target.value.toLowerCase()));
             document.getElementById('itemsPerPageDashboard1')?.addEventListener('change',e=>{itemsPerPageDashboard1=parseInt(e.target.value); currentPageDashboard1=1; updateResumoTable();});
@@ -1027,32 +1181,169 @@ function updateSummaryCards() {
             }, 100);
         }
 
-        // ==================== DATA DE ATUALIZAÇÃO ====================
-async function setupAtualizacaoData() {
-    const el = document.getElementById('data-atualizacao-header');
+        // ==================== HIERARQUIA (baseada na estrutura-organica.pdf) ====================
+        const HIERARQUIA_DATA = [
+            {
+                nome: 'Secretaria-Geral', sigla: '', icon: 'account_balance',
+                link: null,
+                filhos: [
+                    { nome: 'I - Gabinete', icon: 'folder' },
+                    { nome: 'II - Assessoria Especial para Assuntos Municipais', icon: 'folder' },
+                    { nome: 'III - Assessoria Jurídica', icon: 'folder' },
+                    { nome: 'IV - Assessoria Especial do Vice-Governador', icon: 'folder' },
+                    { nome: 'V - Assessoria de Processos Administrativos Especiais', icon: 'folder' },
+                    { nome: 'VI - Subsecretaria de Assessoramento à Governadoria e à Vice-Governadoria', icon: 'folder' }
+                ]
+            },
+            {
+                nome: 'Secretarias de Estado', sigla: '', icon: 'account_balance', grupo: true,
+                filhos: [
+                    { nome: 'Secretaria de Estado de Agricultura, Pecuária e Abastecimento', sigla: 'SEAPA', icon: 'apartment', filhos: [
+                        { nome: 'Empresa de Assistência Técnica e Extensão Rural do Estado de Minas Gerais', sigla: 'EMATER', icon: 'business' },
+                        { nome: 'Empresa de Pesquisa Agropecuária de Minas Gerais', sigla: 'EPAMIG', icon: 'business' },
+                        { nome: 'Instituto Mineiro de Agropecuária', sigla: 'IMA', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Casa Civil', sigla: 'SCC', icon: 'apartment' },
+                    { nome: 'Secretaria de Estado de Comunicação Social', sigla: 'SECOM', icon: 'apartment', filhos: [
+                        { nome: 'Empresa Mineira de Comunicação', sigla: 'EMC', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Cultura e Turismo', sigla: 'SECULT', icon: 'apartment', filhos: [
+                        { nome: 'Fundação de Arte de Ouro Preto', sigla: 'FAOP', icon: 'business' },
+                        { nome: 'Fundação Clóvis Salgado', sigla: 'FCS', icon: 'business' },
+                        { nome: 'Fundação Instituto Estadual do Patrimônio Histórico e Artístico de Minas Gerais', sigla: 'IEPHA-MG', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Desenvolvimento Econômico', sigla: 'SEDE', icon: 'apartment', filhos: [
+                        { nome: 'Companhia de Desenvolvimento Econômico de Minas Gerais', sigla: 'CODEMIG', icon: 'business' },
+                        { nome: 'Companhia de Desenvolvimento de Minas Gerais', sigla: 'CODEMGE', icon: 'business' },
+                        { nome: 'Companhia Energética de Minas Gerais', sigla: 'CEMIG', icon: 'business' },
+                        { nome: 'Companhia de Saneamento de Minas Gerais', sigla: 'COPASA', icon: 'business' },
+                        { nome: 'Copasa Serviços de Saneamento Integrado do Norte e Nordeste de Minas Gerais S.A.', sigla: 'COPANOR', icon: 'business' },
+                        { nome: 'Fundação de Amparo à Pesquisa do Estado de Minas Gerais', sigla: 'FAPEMIG', icon: 'business' },
+                        { nome: 'Banco de Desenvolvimento de Minas Gerais S.A.', sigla: 'BDMG', icon: 'business' },
+                        { nome: 'Instituto de Desenvolvimento Integrado de Minas Gerais', sigla: 'INVESTMINAS', icon: 'business' },
+                        { nome: 'Junta Comercial do Estado de Minas Gerais', sigla: 'JUCEMG', icon: 'business' },
+                        { nome: 'Loteria do Estado de Minas Gerais', sigla: 'LEMG', icon: 'business' },
+                        { nome: 'Minas Gerais Participações S.A.', sigla: 'MGI', icon: 'business' },
+                        { nome: 'Minas Gerais Administração e Serviços S.A.', sigla: 'MGS', icon: 'business' },
+                        { nome: 'Companhia de Habitação do Estado de Minas Gerais', sigla: 'COHAB-MG', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Desenvolvimento Social', sigla: 'SEDESE', icon: 'apartment', filhos: [
+                        { nome: 'Instituto de Desenvolvimento do Norte e Nordeste de Minas', sigla: 'IDENE', icon: 'business' },
+                        { nome: 'Fundação de Educação para o Trabalho de Minas Gerais', sigla: 'UTRAMIG', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Educação', sigla: 'SEE', icon: 'apartment', filhos: [
+                        { nome: 'Fundação Helena Antipoff', sigla: 'FHA', icon: 'business' },
+                        { nome: 'Fundação Educacional Caio Martins', sigla: 'FUCAM', icon: 'business' },
+                        { nome: 'Universidade Estadual de Montes Claros', sigla: 'UNIMONTES', icon: 'business' },
+                        { nome: 'Universidade do Estado de Minas Gerais', sigla: 'UEMG', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Fazenda', sigla: 'SEF', icon: 'apartment', filhos: [
+                        { nome: 'Caixa de Amortização da Dívida', sigla: 'CADIV', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Governo', sigla: 'SEGOV', icon: 'apartment' },
+                    { nome: 'Secretaria de Estado de Infraestrutura, Mobilidade e Parcerias', sigla: 'SEINFRA', icon: 'apartment', filhos: [
+                        { nome: 'Departamento de Estradas de Rodagem do Estado de Minas Gerais', sigla: 'DER-MG', icon: 'business' },
+                        { nome: 'Agência de Desenvolvimento da Região Metropolitana de Belo Horizonte', sigla: 'Agência RMBH', icon: 'business' },
+                        { nome: 'Agência de Desenvolvimento da Região Metropolitana do Vale do Aço', sigla: 'Agência RMVA', icon: 'business' },
+                        { nome: 'Metrô de Belo Horizonte S.A.', sigla: 'Metrominas', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Justiça e Segurança Pública', sigla: 'SEJUSP', icon: 'apartment' },
+                    { nome: 'Secretaria de Estado de Meio Ambiente e Desenvolvimento Sustentável', sigla: 'SEMAD', icon: 'apartment', filhos: [
+                        { nome: 'Agência Reguladora de Serviços de Abastecimento de Água e de Esgotamento Sanitário de Minas Gerais', sigla: 'ARSAE-MG', icon: 'business' },
+                        { nome: 'Fundação Estadual do Meio Ambiente', sigla: 'FEAM', icon: 'business' },
+                        { nome: 'Instituto Estadual de Florestas', sigla: 'IEF', icon: 'business' },
+                        { nome: 'Instituto Mineiro de Gestão das Águas', sigla: 'IGAM', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Planejamento e Gestão', sigla: 'SEPLAG', icon: 'apartment', filhos: [
+                        { nome: 'Companhia de Tecnologia da Informação do Estado de Minas Gerais', sigla: 'PRODEMGE', icon: 'business' },
+                        { nome: 'Fundação João Pinheiro', sigla: 'FJP', icon: 'business' },
+                        { nome: 'Instituto de Previdência dos Servidores do Estado de Minas Gerais', sigla: 'IPSEMG', icon: 'business' },
+                        { nome: 'Instituto de Metrologia e Qualidade do Estado de Minas Gerais', sigla: 'IPEM-MG', icon: 'business' }
+                    ]},
+                    { nome: 'Secretaria de Estado de Saúde', sigla: 'SES', icon: 'apartment', filhos: [
+                        { nome: 'Fundação Centro de Hematologia e Hemoterapia do Estado de Minas Gerais', sigla: 'HEMOMINAS', icon: 'business' },
+                        { nome: 'Fundação Ezequiel Dias', sigla: 'FUNED', icon: 'business' },
+                        { nome: 'Fundação Hospitalar do Estado de Minas Gerais', sigla: 'FHEMIG', icon: 'business' }
+                    ]}
+                ]
+            },
+            {
+                nome: 'Órgãos Colegiados', icon: 'groups', grupo: true,
+                filhos: [
+                    { nome: 'Conselho de Desenvolvimento Econômico e Social', sigla: 'CEDES', icon: 'groups' }
+                ]
+            },
+            {
+                nome: 'Órgãos Autônomos', icon: 'shield', grupo: true,
+                filhos: [
+                    { nome: 'Advocacia-Geral do Estado', sigla: 'AGE', icon: 'gavel' },
+                    { nome: 'Controladoria-Geral do Estado', sigla: 'CGE', icon: 'gavel' },
+                    { nome: 'Ouvidoria-Geral do Estado', sigla: 'OGE', icon: 'gavel' },
+                    { nome: 'Corpo de Bombeiros Militar de Minas Gerais', sigla: 'CBMMG', icon: 'local_fire_department' },
+                    { nome: 'Gabinete Militar do Governador', sigla: 'GMG', icon: 'shield' },
+                    { nome: 'Polícia Civil do Estado de Minas Gerais', sigla: 'PCMG', icon: 'local_police' },
+                    { nome: 'Polícia Militar de Minas Gerais', sigla: 'PMMG', icon: 'local_police' },
+                    { nome: 'Escola de Saúde Pública do Estado de Minas Gerais', sigla: 'ESP-MG', icon: 'school' },
+                    { nome: 'Conselho Estadual de Educação', sigla: 'CEE', icon: 'school' }
+                ]
+            }
+        ];
 
-    try {
-        const resp = await fetch(
-            'https://api.github.com/repos/transparencia-mg/portal_estrutura_organizacional/commits?path=dataset/data/estrutura_governamental.csv&per_page=1'
-        );
-
-        if (!resp.ok) throw new Error('Erro ao buscar commit');
-
-        const commits = await resp.json();
-
-        if (commits && commits.length > 0) {
-            const data = commits[0].commit.committer.date;
-            el.textContent = new Date(data).toLocaleDateString('pt-BR');
-            return;
+        function contarDescendentes(node) {
+            if (!node.filhos || !node.filhos.length) return 0;
+            let total = node.filhos.length;
+            node.filhos.forEach(f => total += contarDescendentes(f));
+            return total;
         }
 
-        el.textContent = 'Não disponível';
+        function renderHierarquiaNode(node, level) {
+            const temFilhos = node.filhos && node.filhos.length > 0;
+            const label = node.sigla ? `${node.nome} <small>— ${node.sigla}</small>` : node.nome;
+            const contagem = temFilhos ? `<span class="h-count">${contarDescendentes(node)}</span>` : '';
+            const filhosHtml = temFilhos
+                ? `<div class="h-children">${node.filhos.map(f => renderHierarquiaNode(f, level + 1)).join('')}</div>`
+                : '';
+            return `
+                <div class="h-node ${temFilhos ? '' : 'h-leaf'}" data-level="${level}">
+                    <div class="h-row" onclick="toggleHierarquiaNode(this)">
+                        <i class="material-icons h-toggle">chevron_right</i>
+                        <i class="material-icons h-icon">${node.icon || 'folder'}</i>
+                        <span class="h-label">${label}</span>
+                        ${contagem}
+                    </div>
+                    ${filhosHtml}
+                </div>`;
+        }
 
-    } catch (e) {
-        console.error('Erro ao buscar data:', e);
-        el.textContent = 'Não disponível';
-    }
-}
+        function renderHierarquia() {
+            const el = document.getElementById('hierarquiaTree');
+            if (!el) return;
+            el.innerHTML = HIERARQUIA_DATA.map(n => renderHierarquiaNode(n, 0)).join('');
+            // Primeiro nível já vem expandido para facilitar a navegação inicial
+            el.querySelectorAll(':scope > .h-node').forEach(n => n.classList.add('open'));
+        }
+
+        window.toggleHierarquiaNode = function(rowEl) {
+            const node = rowEl.parentElement;
+            if (node.classList.contains('h-leaf')) return;
+            node.classList.toggle('open');
+        };
+
+        function setupHierarquiaEvents() {
+            document.getElementById('expandirTudo')?.addEventListener('click', () => {
+                document.querySelectorAll('#hierarquiaTree .h-node').forEach(n => n.classList.add('open'));
+            });
+            document.getElementById('recolherTudo')?.addEventListener('click', () => {
+                document.querySelectorAll('#hierarquiaTree .h-node').forEach(n => n.classList.remove('open'));
+            });
+            const pdfBtn = document.getElementById('verPdfEstrutura');
+            if (pdfBtn) pdfBtn.href = GITHUB_PDF_URL;
+        }
+
+        // ==================== DATA DE ATUALIZAÇÃO ====================
+        // A data exibida é definida em loadData() no momento em que os dados
+        // são lidos com sucesso do CSV publicado no GitHub (mesmo padrão do
+        // index_modelo.html).
 document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('loadingOverlay').style.display = 'flex';
 
@@ -1063,8 +1354,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateSummaryCards();
     updateCharts();
     setupEvents();
-
-    await setupAtualizacaoData(); // ✅ AQUI
+    renderHierarquia();
+    setupHierarquiaEvents();
 
     document.getElementById('loadingOverlay').style.display = 'none';
     iframeUpdateHeight();

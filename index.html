@@ -905,7 +905,7 @@ html, body {
         let orgaosData = [], filteredData = [], currentPageDashboard1 = 1, currentPageDashboard2 = 1, itemsPerPageDashboard1 = 50, itemsPerPageDashboard2 = 50, charts = {}, currentSortDashboard1 = { column: 'orgao', order: 'asc' }, currentSortDashboard2 = { column: 'orgao', order: 'asc' };
         const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/dataset/data/estrutura_governamental.csv';
         // ATENÇÃO: ajuste este link quando o PDF "estrutura-organica.pdf" for inserido no repositório do GitHub
-        const GITHUB_PDF_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/dataset/docs/estrutura-organica.pdf';
+        const GITHUB_PDF_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/estrutura-organica.pdf';
         const tipoClasses = { 'Órgão Autônomo':'badge-autonomo','Secretaria':'badge-secretaria','Vinculado':'badge-vinculado','Autarquia':'badge-autarquia','Empresa Pública':'badge-empresa','Fundação Pública':'badge-fundacao','Outros':'badge-outros' };
 
 async function loadData() {

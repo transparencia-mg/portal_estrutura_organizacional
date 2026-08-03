@@ -906,6 +906,8 @@ html, body {
         const GITHUB_CSV_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/dataset/data/estrutura_governamental.csv';
         // ATENÇÃO: ajuste este link quando o PDF "estrutura-organica.pdf" for inserido no repositório do GitHub
         const GITHUB_PDF_URL = 'https://raw.githubusercontent.com/transparencia-mg/estrutura_organizacional/main/estrutura-organica.pdf';
+        // API do GitHub usada para descobrir a data do último commit que alterou a pasta dataset/data
+        const GITHUB_API_COMMITS_URL = 'https://api.github.com/repos/transparencia-mg/portal_estrutura_organizacional/commits?path=dataset/data&per_page=1';
         const tipoClasses = { 'Órgão Autônomo':'badge-autonomo','Secretaria':'badge-secretaria','Vinculado':'badge-vinculado','Autarquia':'badge-autarquia','Empresa Pública':'badge-empresa','Fundação Pública':'badge-fundacao','Outros':'badge-outros' };
 
 async function loadData() {
@@ -944,18 +946,38 @@ async function loadData() {
                 });
                 filteredData = [...orgaosData];
 
-                document.getElementById('data-atualizacao-header').textContent =
-                    new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-
                 resolve();
             }, 
             error: (err) => {
                 console.error('Erro ao carregar CSV:', err);
-                document.getElementById('data-atualizacao-header').textContent = 'indisponível';
                 resolve();
             }
         });
     });
+}
+
+// Busca no GitHub a data do último commit que alterou algum arquivo dentro
+// da pasta dataset/data (é essa pasta que contém o CSV consumido pelo
+// dashboard), e usa essa data como "Atualizado em".
+async function loadDataAtualizacao() {
+    const el = document.getElementById('data-atualizacao-header');
+    if (!el) return;
+    try {
+        const resp = await fetch(GITHUB_API_COMMITS_URL, {
+            headers: { 'Accept': 'application/vnd.github+json' }
+        });
+        if (!resp.ok) throw new Error('Resposta HTTP ' + resp.status);
+        const commits = await resp.json();
+        const dataCommit = commits?.[0]?.commit?.author?.date || commits?.[0]?.commit?.committer?.date;
+        if (!dataCommit) throw new Error('Nenhum commit encontrado para dataset/data');
+
+        el.textContent = new Date(dataCommit).toLocaleDateString('pt-BR', {
+            day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+    } catch (err) {
+        console.error('Erro ao buscar data do último commit de dataset/data:', err);
+        el.textContent = 'indisponível';
+    }
 }
 
 function updateResumoTable() {
@@ -1341,13 +1363,15 @@ function updateSummaryCards() {
         }
 
         // ==================== DATA DE ATUALIZAÇÃO ====================
-        // A data exibida é definida em loadData() no momento em que os dados
-        // são lidos com sucesso do CSV publicado no GitHub (mesmo padrão do
-        // index_modelo.html).
+        // A data exibida é obtida em loadDataAtualizacao(), consultando a API
+        // do GitHub para descobrir o último commit que alterou algum arquivo
+        // dentro da pasta dataset/data (onde fica o CSV consumido pelo
+        // dashboard). Assim, a data reflete a última mudança real nos dados,
+        // e não a data em que o navegador do usuário carregou a página.
 document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('loadingOverlay').style.display = 'flex';
 
-    await loadData();
+    await Promise.all([loadData(), loadDataAtualizacao()]);
     updateFilterOptions();
     updateResumoTable();
     updateOrgaosTable();

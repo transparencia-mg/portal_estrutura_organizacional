@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.036,
+  "time": 0.035,
   "errors": [],
   "tasks": [
     {
@@ -66,8 +66,8 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "245e31d355d79f6cf223964fd65f8872",
-          "bytes": 23170,
+          "hash": "2db1e31b646db9e65bafcd1d9030724f",
+          "bytes": 23194,
           "fields": 11,
           "rows": 66
         }
@@ -560,7 +560,7 @@
             "CEMIG",
             "Empresa Pública",
             "SEDE",
-            "Alexandre Ramos Peixoto",
+            "Marco Aurélio Martins da Costa Vasconcelos",
             "http://www.cemig.com.br",
             "Avenida Barbacena, 1200, Santo Agostinho, Belo Horizonte, 30190-131",
             "(31)3506-3711",
@@ -688,7 +688,7 @@
             "COPASA",
             "Empresa Pública",
             "SEDE",
-            "Marília Carvalho de Melo",
+            "Augusto Dantas Borges",
             "http://www.copasa.com.br",
             "Rua Mar de Espanha, 525, Santo Antônio, Belo Horizonte, 30270-130",
             "(31)3348-9600",
@@ -2416,7 +2416,7 @@
             "UTRAMIG",
             "Fundação Pública",
             "SEDESE",
-            "Gleison Cunha Soares",
+            "Gilmar Álvares Cota Júnior",
             "http://www.utramig.mg.gov.br",
             "Avenida Afonso Pena, 3400, Cruzeiro, Belo Horizonte, 30130-009",
             "(31)3263-7500",
